@@ -1,0 +1,335 @@
+@use './base/variables' as *;
+@use './base/reset' as *;
+
+body {
+  background-color: var(--bodyBg);
+  font-family: var(--primaryFont);
+  max-width: 1880px;
+  margin-inline: auto;
+}
+
+@keyframes loadAnimation {
+  0% {
+    background-image: linear-gradient(to top right, var(--loaderBg), #efefef);
+  }
+
+  100% {
+    background-image: linear-gradient(to right, #efefef);
+  }
+}
+
+%load-animation {
+  animation: loadAnimation 0.5s infinite;
+  border-radius: 5px;
+  background-color: var(--loaderBg);
+}
+
+.hedaer,
+.main__country,
+.main__country--loader,
+.main__modal-ul-border-countries,
+.main__modal-ul-border-countries--loader,
+.main__modal-back-btn-icon,
+.main__modal-back-btn,
+.main__container-search-input,
+.main__select {
+  background-color: var(--primaryBg);
+}
+
+html .header,
+html .main,
+html .main__modal {
+  padding-inline: 10px;
+  @media screen and (min-width: 748px) {
+    padding-inline: 130px;
+  }
+}
+
+html .hide {
+  display: none;
+}
+
+html .hide-country {
+  order: 10;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.h2-error {
+  width: max-content;
+  font-size: 35px;
+  margin-inline: auto;
+  color: var(--primaryTextClr);
+}
+
+.header {
+  padding: 20px 10px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  border-bottom: 5px solid var(--shadowClr);
+  &__h1 {
+    font-size: 20px;
+    color: var(--primaryTextClr);
+  }
+
+  &__container-toggle {
+    cursor: pointer;
+    color: var(--primaryTextClr);
+  }
+}
+
+.main {
+  position: relative;
+  margin-top: 40px;
+
+  &__container-top {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 10px;
+    @media screen and (max-width: 373px) {
+      display: flex;
+      flex-flow: column;
+      gap: 20px;
+    }
+  }
+
+  &__container-search-input {
+    padding-inline: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: var(--shadowClr) 0px 0px 4px 4px;
+  }
+
+  &__search-icon {
+    color: var(--primaryTextClr);
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--primaryTextClr);
+    &::placeholder {
+      color: var(--primaryTextClr);
+      font-size: 14px;
+    }
+  }
+
+  &__container-select {
+    box-shadow: var(--shadowClr) 0px 0px 4px 4px;
+    border-radius: 10px;
+    padding-inline: 10px;
+    background-color: var(--primaryBg);
+    width: max-content;
+    min-height: 40px;
+  }
+
+  &__select {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    color: var(--primaryTextClr);
+    padding-inline: 10px;
+    cursor: pointer;
+  }
+
+  &__container-countries,
+  &__container-countries--loader {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 50px;
+    @media screen and (min-width: 748px) {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+  }
+
+  &__container-countries--loader {
+    pointer-events: none;
+  }
+
+  &__country {
+    width: min(100%, 350px);
+    margin-inline: auto;
+    background-color: var(--primaryBg);
+    box-shadow: var(--shadowClr) 0px 0px 4px 4px;
+    color: var(--primaryTextClr);
+    cursor: pointer;
+
+    & * {
+      pointer-events: none;
+    }
+
+    &--loader {
+      margin-inline: auto;
+      width: min(100%, 350px);
+      @media screen and (min-width: 748px) {
+        width: min(100%, 500px);
+        width: 100%;
+      }
+    }
+  }
+
+  &___country-container-content {
+    padding: 30px 30px 50px;
+  }
+
+  &__country-name {
+    color: var(--primaryTextClr);
+  }
+
+  &__card-ul {
+    padding-top: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+  }
+
+  &__card-li-span {
+    font-weight: 800;
+    letter-spacing: 0.4px;
+  }
+
+  &__country-container-flag {
+    &--loader {
+      width: min(100%, 400px);
+      height: 200px;
+      @extend %load-animation;
+    }
+  }
+
+  &__country-flag {
+    height: 200px;
+  }
+
+  &__card-ul {
+    &--loader {
+      padding: 20px;
+      display: flex;
+      flex-flow: column wrap;
+      gap: 20px;
+    }
+  }
+
+  &__card-li {
+    &--loader {
+      padding: 20px;
+      @extend %load-animation;
+    }
+  }
+}
+
+.main__modal {
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--primaryTextClr);
+
+  &-back-btn {
+    width: max-content;
+    height: max-content;
+    padding: 10px 30px;
+    border: none;
+    outline: none;
+    color: var(--primaryTextClr);
+    margin-bottom: 34px;
+    border-radius: 20px;
+    background-color: var(--primaryBg);
+    box-shadow: rgb(0 0 0 / 3%) 0px 0px 4px 4px;
+    cursor: pointer;
+    & * {
+      pointer-events: none;
+    }
+    &-text {
+      padding-left: 10px;
+    }
+  }
+
+  &-container-country {
+    margin-inline: auto;
+    max-width: 430px;
+    @media screen and (min-width: 1024px) {
+      max-width: none;
+      display: flex;
+      flex-flow: row;
+    }
+  }
+
+  &-flag {
+    width: 100%;
+    height: 100%;
+    max-height: 420px;
+  }
+
+  &-country-facts {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    gap: 30px;
+    padding-bottom: 40px;
+    @media screen and (min-width: 1024px) {
+      justify-content: space-between;
+      padding-left: 100px;
+      padding-bottom: 0px;
+    }
+  }
+
+
+  &-country-name {
+    padding-top: 30px;
+    @media screen and (min-width: 1024px) {
+      padding: 0px;
+    }
+  }
+
+  &-container-uls {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 20px;
+    @media screen and (min-width: 1200px) {
+      flex-flow: row;
+      gap: 100px;
+    }
+  }
+
+  &-ul {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 20px;
+  }
+  &-country-fact-span {
+    font-weight: 800;
+  }
+
+  &-ul-border-countries{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 15px;
+  }
+
+  &-border-countries-h3 {
+    font-weight: 600;
+  }
+
+  &-ul-border-countries {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+    background-color: transparent;
+  }
+
+  &-border-country {
+    background-color: var(--primaryBg);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 400;
+    box-shadow: var(--shadowClr) 0px 0px 4px 4px;
+    cursor: pointer;
+  }
+}

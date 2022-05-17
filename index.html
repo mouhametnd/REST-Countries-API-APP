@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REST Countries API with color theme switcher</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./m.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/972c594dde.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__h1">Where on the world?</h1>
+      <div class="header__container-toggle" id="themeToggle">
+        <i class="fa-solid fa-moon"></i>
+        <span class="header__theme-text">Dark Mode</span>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="main__container-top">
+        <div class="main__container-search-input">
+          <i class="main__search-icon fa-solid fa-magnifying-glass"></i>
+          <input autocomplete="off" placeholder="Search for a country..." class="main__input" type="search" id="searchInput" />
+        </div>
+        <div class="main__container-select">
+          <select id="select" class="main__select">
+            <option value="All">All</option>
+            <option value="Africa">Africa</option>
+            <option value="Asia">Asia</option>
+            <option value="Americas">Americas</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+        </div>
+      </div>
+
+      <section class="main__container-countries--loader hide" id="countriesLoader">
+        <div class="main__country--loader">
+          <div class="main__country-container-flag--loader"></div>
+          <div class="main__card-ul--loader">
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+          </div>
+        </div>
+        <div class="main__country--loader">
+          <div class="main__country-container-flag--loader"></div>
+          <div class="main__card-ul--loader">
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+          </div>
+        </div>
+        <div class="main__country--loader">
+          <div class="main__country-container-flag--loader"></div>
+          <div class="main__card-ul--loader">
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+          </div>
+        </div>
+        <div class="main__country--loader">
+          <div class="main__country-container-flag--loader"></div>
+          <div class="main__card-ul--loader">
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+          </div>
+        </div>
+        <div class="main__country--loader">
+          <div class="main__country-container-flag--loader"></div>
+          <div class="main__card-ul--loader">
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+          </div>
+        </div>
+        <div class="main__country--loader">
+          <div class="main__country-container-flag--loader"></div>
+          <div class="main__card-ul--loader">
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+          </div>
+        </div>
+        <div class="main__country--loader">
+          <div class="main__country-container-flag--loader"></div>
+          <div class="main__card-ul--loader">
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+          </div>
+        </div>
+        <div class="main__country--loader">
+          <div class="main__country-container-flag--loader"></div>
+          <div class="main__card-ul--loader">
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+            <div class="main__card-li--loader"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main__container-countries" id="containerCountries"></section>
+
+      <section class="main__modal hide"  id="modal">
+        <button class="main__modal-back-btn" id="backBtn">
+          <i class="main__modal-back-btn-icon fa-solid fa-left-long"></i>
+          <span class="main__modal-back-btn-text">back</span>
+        </button>
+
+        <div class="main__modal-container-country">
+          <div class="main__modal-container-flag">
+            <img src="" alt="" class="main__modal-flag" data-id="modal-flag" />
+          </div>
+          <div class="main__modal-country-facts">
+            <h2 class="main__modal-country-name" data-id="modal-name"></h2>
+            <div class="main__modal-container-uls">
+              <ul class="main__modal-ul">
+                <li class="main__modal-country-fact">
+                  <span class="main__modal-country-fact-span">Native Name:</span> <span data-id="modal-nativeName"></span>
+                </li>
+                <li class="main__modal-country-fact">
+                  <span class="main__modal-country-fact-span">Population:</span>
+                  <span data-id="modal-population"></span>
+                </li>
+                <li class="main__modal-country-fact">
+                  <span class="main__modal-country-fact-span">Region:</span>
+                  <span data-id="modal-region"></span>
+                </li>
+                <li class="main__modal-country-fact">
+                  <span class="main__modal-country-fact-span">Sub Region:</span>
+                  <span data-id="modal-subregion"></span>
+                </li>
+              </ul>
+              <ul class="main__modal-ul">
+                <li class="main__modal-country-fact">
+                  <span class="main__modal-country-fact-span">Top Level Domain:</span>
+                  <span data-id="modal-domain"></span>
+                </li>
+                <li class="main__modal-country-fact">
+                  <span class="main__modal-country-fact-span">Currencies:</span>
+                  <span data-id="modal-currencies"></span>
+                </li>
+                <li class="main__modal-country-fact">
+                  <span class="main__modal-country-fact-span">Languages:</span>
+                  <span data-id="modal-languages"></span>
+                </li>
+                <li class="main__modal-country-fact">
+                  <span class="main__modal-country-fact-span">Capital:</span>
+                  <span data-id="modal-capital"></span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="main__modal-border-countries">Border Countries:</h3>
+              <div class="main__modal-ul-border-countries" data-id="border-countries-ul">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <h2 class="h2-error hide" id="h2Error">Error fetchong</h2>
+    </main>
+
+    <template id="countryTemplate">
+      <article class="main__country" data-country="">
+        <div class="main__country-container-flag">
+          <img src="" alt="" class="main__country-flag" data-id="flag" />
+        </div>
+        <div class="main___country-container-content">
+          <h2 class="main__country-name" data-id="name"></h2>
+          <ul class="main__card-ul">
+            <li class="main__card-li">
+              <span class="main__card-li-span">Population:</span>
+              <span></span>
+            </li>
+            <li class="main__card-li">
+              <span class="main__card-li-span">Region:</span>
+              <span></span>
+            </li>
+            <li class="main__card-li">
+              <span class="main__card-li-span">Capital:</span>
+              <span></span>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </template>
+
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>
