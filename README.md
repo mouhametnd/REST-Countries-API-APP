@@ -2,7 +2,7 @@
  
 ## Welcome 🍃
 
-This project challenged by Frontend Mentor was an excellent project to put my SCSS, DOM skills, and API handles into practice. The project is about consuming a countries API, making some countries' filters, see more detailed information about the country clicked on a separate page, click through to the border countries on the detail page and toggle colour sheme 
+This project challenged by Frontend Mentor was an excellent project to put my SCSS, DOM skills, and API handles into practice. The project is about consuming a countries API, making some countries' filters, see more detailed information about the country clicked on a separate page, click through to the border countries on the detail page and toggle colour sheme.
 
 
 ## Links
